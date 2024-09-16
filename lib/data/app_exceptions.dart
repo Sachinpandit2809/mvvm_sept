@@ -22,6 +22,7 @@ class FetchDataException extends AppException {
 
 class BadRequestException extends AppException {
   BadRequestException(String? message) : super(message, "Invalid request");
+  // BadRequestException(String? super.message);
 }
 
 class UnauthorisedException extends AppException {
@@ -32,3 +33,47 @@ class UnauthorisedException extends AppException {
 class InvalidInputException extends AppException {
   InvalidInputException(String? message) : super(message, "Invalid input");
 }
+
+// class AppException implements Exception {
+//   final _message;
+//   // final _prefix;
+//   AppException([
+//     this._message,
+//     // this._prefix
+//   ]); // i think this is optional parameter in fuctions
+//   @override
+//   String toString() {
+//     return '$_message';
+//   }
+
+//   String toStringMessage() {
+//     // confused here
+//     return '$_message';
+//   }
+// }
+
+// class FetchDataException extends AppException {
+//   FetchDataException(String? message)
+//       : super(
+//           message,
+//         );
+// }
+
+// class BadRequestException extends AppException {
+//   // BadRequestException(String? message) : super(message, "Invalid request");
+//   BadRequestException(String? super.message);
+// }
+
+// class UnauthorisedException extends AppException {
+//   UnauthorisedException(String? message)
+//       : super(
+//           message,
+//         );
+// }
+
+// class InvalidInputException extends AppException {
+//   InvalidInputException(String? message)
+//       : super(
+//           message,
+//         );
+// }

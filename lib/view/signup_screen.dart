@@ -7,25 +7,31 @@ import 'package:provider/provider.dart';
 
 import '../utils/utils.dart';
 
-class LoginScreen extends StatefulWidget {
-  const LoginScreen({super.key});
+class SignupScreen extends StatefulWidget {
+  const SignupScreen({super.key});
 
   @override
-  State<LoginScreen> createState() => _LoginScreenState();
+  State<SignupScreen> createState() => _SignupScreenState();
 }
 
-class _LoginScreenState extends State<LoginScreen> {
+class _SignupScreenState extends State<SignupScreen> {
   final ValueNotifier _obsecureText = ValueNotifier<bool>(true);
   final emailController = TextEditingController();
+  final usernameController = TextEditingController();
+
   final passwordController = TextEditingController();
   FocusNode emailFocusNode = FocusNode();
   FocusNode passwordFocusNode = FocusNode();
+  FocusNode usernameFocusNode = FocusNode();
+
   @override
   void dispose() {
     super.dispose();
     emailController.dispose();
     passwordController.dispose();
     emailController.dispose();
+    usernameController.dispose();
+    usernameFocusNode.dispose();
     passwordController.dispose();
   }
 
@@ -36,12 +42,27 @@ class _LoginScreenState extends State<LoginScreen> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.amber,
-        title: const Text("Login Screen"),
+        title: const Text("Signup Screen"),
       ),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
+          TextFormField(
+            controller: usernameController,
+            focusNode: usernameFocusNode,
+            keyboardType: TextInputType.text,
+            decoration: const InputDecoration(
+              prefixIcon: Icon(Icons.person),
+              hintText: "username",
+              labelText: "username",
+            ),
+            onFieldSubmitted: (value) {
+              Utils.fieldFocusChange(
+                  context, emailFocusNode, passwordFocusNode);
+            },
+          ),
+          (MediaQuery.sizeOf(context).width * .07).heightBox,
           TextFormField(
             controller: emailController,
             focusNode: emailFocusNode,
@@ -88,8 +109,8 @@ class _LoginScreenState extends State<LoginScreen> {
           ),
           20.heightBox,
           RoundButton(
-            title: "login",
-            loading: authViewModelController.loginLoading,
+            title: "signup",
+            loading: authViewModelController.signupLoading,
             onPress: () {
               if (emailController.text.isEmpty) {
                 Utils.showFlushBarErrorMessage("please enter email", context);
@@ -102,28 +123,26 @@ class _LoginScreenState extends State<LoginScreen> {
               } else {
                 debugPrint("api  hitt");
                 Map data = {
+                  'username': usernameController.text.toString(),
                   'email': emailController.text.toString(),
                   'password': passwordController.text.toString()
                 };
 
-                authViewModelController.loginApi(data, context);
+                authViewModelController.signupApi(data, context);
               }
             },
           ),
           (MediaQuery.of(context).size.height * 0.001).heightBox,
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              const Text("Don't have account?"),
-              TextButton(
-                  onPressed: () {
-                    debugPrint(
-                        (MediaQuery.of(context).size.height * 0.1).toString());
-                    Navigator.pushNamed(context, RoutesName.signup);
-                  },
-                  child: const Text("Signup"))
-            ],
-          )
+          Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+            const Text("allready have account?"),
+            TextButton(
+                onPressed: () {
+                  debugPrint(
+                      (MediaQuery.of(context).size.height * 0.1).toString());
+                  Navigator.pushNamed(context, RoutesName.login);
+                },
+                child: const Text("Login"))
+          ])
         ],
       ),
     );
