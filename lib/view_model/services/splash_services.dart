@@ -15,7 +15,7 @@ class SplashServices {
       } else {
         await Future.delayed(const Duration(seconds: 4));
 
-        Navigator.pushNamed(context, RoutesName.home);
+        Navigator.pushNamed(context, RoutesName.studentdata);
       }
     }).onError(
       (error, stackTrace) {

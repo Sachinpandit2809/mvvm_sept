@@ -1,21 +1,23 @@
-
 class MovieModel {
   List<Movies>? movies;
 
   MovieModel({this.movies});
 
   MovieModel.fromJson(Map<String, dynamic> json) {
-    if(json["movies"] is List) {
-      movies = json["movies"] == null ? null : (json["movies"] as List).map((e) => Movies.fromJson(e)).toList();
+    if (json['movies'] != null) {
+      movies = <Movies>[];
+      json['movies'].forEach((v) {
+        movies!.add(new Movies.fromJson(v));
+      });
     }
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> _data = <String, dynamic>{};
-    if(movies != null) {
-      _data["movies"] = movies?.map((e) => e.toJson()).toList();
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    if (this.movies != null) {
+      data['movies'] = this.movies!.map((v) => v.toJson()).toList();
     }
-    return _data;
+    return data;
   }
 }
 
@@ -26,89 +28,68 @@ class Movies {
   List<String>? genres;
   List<int>? ratings;
   String? poster;
-  String? contentRating;
+  dynamic? contentRating;
   String? duration;
   String? releaseDate;
-  int? averageRating;
+  dynamic? averageRating;
   String? originalTitle;
   String? storyline;
   List<String>? actors;
-  String? imdbRating;
+  dynamic? imdbRating;
   String? posterurl;
 
-  Movies({this.id, this.title, this.year, this.genres, this.ratings, this.poster, this.contentRating, this.duration, this.releaseDate, this.averageRating, this.originalTitle, this.storyline, this.actors, this.imdbRating, this.posterurl});
+  Movies(
+      {this.id,
+      this.title,
+      this.year,
+      this.genres,
+      this.ratings,
+      this.poster,
+      this.contentRating,
+      this.duration,
+      this.releaseDate,
+      this.averageRating,
+      this.originalTitle,
+      this.storyline,
+      this.actors,
+      this.imdbRating,
+      this.posterurl});
 
   Movies.fromJson(Map<String, dynamic> json) {
-    if(json["id"] is String) {
-      id = json["id"];
-    }
-    if(json["title"] is String) {
-      title = json["title"];
-    }
-    if(json["year"] is String) {
-      year = json["year"];
-    }
-    if(json["genres"] is List) {
-      genres = json["genres"] == null ? null : List<String>.from(json["genres"]);
-    }
-    if(json["ratings"] is List) {
-      ratings = json["ratings"] == null ? null : List<int>.from(json["ratings"]);
-    }
-    if(json["poster"] is String) {
-      poster = json["poster"];
-    }
-    if(json["contentRating"] is String) {
-      contentRating = json["contentRating"];
-    }
-    if(json["duration"] is String) {
-      duration = json["duration"];
-    }
-    if(json["releaseDate"] is String) {
-      releaseDate = json["releaseDate"];
-    }
-    if(json["averageRating"] is int) {
-      averageRating = json["averageRating"];
-    }
-    if(json["originalTitle"] is String) {
-      originalTitle = json["originalTitle"];
-    }
-    if(json["storyline"] is String) {
-      storyline = json["storyline"];
-    }
-    if(json["actors"] is List) {
-      actors = json["actors"] == null ? null : List<String>.from(json["actors"]);
-    }
-    if(json["imdbRating"] is String) {
-      imdbRating = json["imdbRating"];
-    }
-    if(json["posterurl"] is String) {
-      posterurl = json["posterurl"];
-    }
+    id = json['id'];
+    title = json['title'];
+    year = json['year'];
+    genres = json['genres'].cast<String>();
+    ratings = json['ratings'].cast<int>();
+    poster = json['poster'];
+    contentRating = json['contentRating'];
+    duration = json['duration'];
+    releaseDate = json['releaseDate'];
+    averageRating = json['averageRating'];
+    originalTitle = json['originalTitle'];
+    storyline = json['storyline'];
+    actors = json['actors'].cast<String>();
+    imdbRating = json['imdbRating'];
+    posterurl = json['posterurl'];
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> _data = <String, dynamic>{};
-    _data["id"] = id;
-    _data["title"] = title;
-    _data["year"] = year;
-    if(genres != null) {
-      _data["genres"] = genres;
-    }
-    if(ratings != null) {
-      _data["ratings"] = ratings;
-    }
-    _data["poster"] = poster;
-    _data["contentRating"] = contentRating;
-    _data["duration"] = duration;
-    _data["releaseDate"] = releaseDate;
-    _data["averageRating"] = averageRating;
-    _data["originalTitle"] = originalTitle;
-    _data["storyline"] = storyline;
-    if(actors != null) {
-      _data["actors"] = actors;
-    }
-    _data["imdbRating"] = imdbRating;
-    _data["posterurl"] = posterurl;
-    return _data;
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['id'] = this.id;
+    data['title'] = this.title;
+    data['year'] = this.year;
+    data['genres'] = this.genres;
+    data['ratings'] = this.ratings;
+    data['poster'] = this.poster;
+    data['contentRating'] = this.contentRating;
+    data['duration'] = this.duration;
+    data['releaseDate'] = this.releaseDate;
+    data['averageRating'] = this.averageRating;
+    data['originalTitle'] = this.originalTitle;
+    data['storyline'] = this.storyline;
+    data['actors'] = this.actors;
+    data['imdbRating'] = this.imdbRating;
+    data['posterurl'] = this.posterurl;
+    return data;
   }
 }

@@ -2,6 +2,7 @@
 import 'dart:convert';
 import 'dart:io';
 
+import 'package:flutter/foundation.dart';
 import 'package:http/http.dart';
 import 'package:mvvm_sept/data/app_exceptions.dart';
 import 'package:mvvm_sept/data/network/baseApiServices.dart';
@@ -12,8 +13,8 @@ class NetworkApiServices extends BaseApiServices {
   Future getGetApiServices(String url) async {
     dynamic responseJson;
     try {
-      final response =
-          await http.get(Uri.parse(url)).timeout(const Duration(seconds: 10));
+      final response = await http.get(Uri.parse(url));
+      //.timeout(const Duration(seconds: 10));
       responseJson = returnResponse(response);
     } on SocketException {
       throw FetchDataException("No Internet Connection");
@@ -42,11 +43,14 @@ class NetworkApiServices extends BaseApiServices {
   dynamic returnResponse(http.Response response) {
     switch (response.statusCode) {
       case 200:
-        dynamic responseJson = jsonDecode(response.body);
-        return responseJson;
+        dynamic responseJsons = jsonDecode(response.body.toString());
+        if (kDebugMode) {
+          print(responseJsons.toString());
+        }
+        return responseJsons;
       case 201:
-        dynamic responseJson = jsonDecode(response.body);
-        return responseJson;
+        dynamic responseJsons = jsonDecode(response.body);
+        return responseJsons;
       case 400:
         throw BadRequestException(response.body.toString());
       case 404:

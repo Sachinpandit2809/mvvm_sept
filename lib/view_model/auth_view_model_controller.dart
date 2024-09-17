@@ -33,7 +33,7 @@ class AuthViewModelController with ChangeNotifier {
         token: onValue['token'].toString(),
       ));
       Utils.toastSuccessMessage("Login Succesfully");
-      Navigator.pushNamed(context, RoutesName.home);
+      Navigator.pushNamed(context, RoutesName.student);
     }).onError(
       (error, stackTrace) {
         setLoginLoading(false);
