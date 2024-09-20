@@ -10,7 +10,7 @@ class AuthRepository {
           await _apiServices.getPostApiServices(AppUrl.login, data);
       return response;
     } catch (e) {
-      throw e;
+    rethrow;
     }
   }
 
@@ -20,7 +20,7 @@ class AuthRepository {
           await _apiServices.getPostApiServices(AppUrl.signup, data);
       return response;
     } catch (e) {
-      throw e;
+      rethrow;
     }
   }
 }
