@@ -23,7 +23,6 @@ class NetworkApiServices extends BaseApiServices {
     //catch (e) {}
   }
 
-  @override
   Future getPostApiServices(String url, dynamic data) async {
     dynamic responseJson;
     try {
@@ -31,6 +30,7 @@ class NetworkApiServices extends BaseApiServices {
           .post(
             Uri.parse(url),
             body: data,
+            //  headers: {"Content-Type": "application/json"},
           )
           .timeout(const Duration(seconds: 10));
       responseJson = returnResponse(response);

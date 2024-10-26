@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:mvvm_sept/data/response/api_response.dart';
+import 'package:mvvm_sept/data/network/response/api_response.dart';
+import 'package:mvvm_sept/data/network/response/api_response.dart';
 import 'package:mvvm_sept/models/student_model.dart';
 import 'package:mvvm_sept/repository/student_repository.dart';
 

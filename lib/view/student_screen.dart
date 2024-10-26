@@ -5,7 +5,7 @@ import 'package:mvvm_sept/view_model/user_view_model_controller.dart';
 
 import 'package:provider/provider.dart';
 
-import '../data/response/status.dart';
+import '../data/network/response/status.dart';
 
 class StudentScreen extends StatefulWidget {
   const StudentScreen({super.key});

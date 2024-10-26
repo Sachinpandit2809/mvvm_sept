@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:mvvm_sept/data/response/api_response.dart';
-import 'package:mvvm_sept/data/response/status.dart';
+import 'package:mvvm_sept/data/network/response/api_response.dart';
+import 'package:mvvm_sept/data/network/response/status.dart';
 import 'package:mvvm_sept/models/movie_model.dart';
 import 'package:mvvm_sept/repository/home_repository.dart';
 import 'package:mvvm_sept/resource/colors/app_colors.dart';
@@ -82,7 +82,7 @@ import 'package:flutter/material.dart';
 
 import 'package:provider/provider.dart';
 
-import '../data/response/status.dart';
+import '../data/network/response/status.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});

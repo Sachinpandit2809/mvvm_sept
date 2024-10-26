@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:mvvm_sept/utils/routes/routes_name.dart';
-import 'package:mvvm_sept/view_model/services/student_data_view_model_controller.dart';
+import 'package:mvvm_sept/view_model/student_data_view_model_controller.dart';
 import 'package:mvvm_sept/view_model/user_view_model_controller.dart';
 
 import 'package:provider/provider.dart';
 
-import '../data/response/status.dart';
+import '../data/network/response/status.dart';
 
 class StudentDataScreen extends StatefulWidget {
   const StudentDataScreen({super.key});

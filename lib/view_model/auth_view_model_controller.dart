@@ -37,6 +37,7 @@ class AuthViewModelController with ChangeNotifier {
     }).onError(
       (error, stackTrace) {
         setLoginLoading(false);
+        // Utils.showFlushBarErrorMessage(error.toString(), context);
 
         if (error.toString() ==
             '{"message":"Invalid credentials"}Invalid request') {
